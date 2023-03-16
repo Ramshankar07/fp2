@@ -5,27 +5,31 @@ import styles from '@/styles/Home.module.css'
 import { GraphQLClient, gql} from 'graphql-request';
 import request from 'graphql-request'
 import { useEffect, useState } from 'react';
+import BlogPost   from '../../Components/Blogcard';
 
 const inter = Inter({ subsets: ['latin'] })
 //API Key
 const gcms = new GraphQLClient('https://api-ap-south-1.hygraph.com/v2/clfb1iprr2eyg01ue4eqgeaxg/master');
 //query
 const QUERY = gql`
-  {
-    post{id,
-      title, 
-      slug, 
-      tags, 
-      date, 
-      excerpt, 
-      coverimage, 
-      content, 
-      author
-          {
-           name, picture, title, biography, posts
-      } 
-      seo
+{
+  posts {
+    author {
+      createdBy {
+        name
+        picture
+        updatedAt
       }
+    }
+    coverImage {
+      id
+    }
+    content
+    id
+    slug
+    tags
+    title
+  }
 }`;
 
 export async function getStaticProps(){
