@@ -9,26 +9,21 @@ import BlogPost   from '../../Components/Blogcard';
 
 const inter = Inter({ subsets: ['latin'] })
 //API Key
-const gcms = new GraphQLClient('https://api-ap-south-1.hygraph.com/v2/clfb1iprr2eyg01ue4eqgeaxg/master');
+const gcms = new GraphQLClient('https://api-ap-south-1.hygraph.com/v2/clfb7gjz22rzm01upg2oe9xth/master');
 //query
 const QUERY = gql`
 {
   posts {
+    id
+    title
+    slug
+    datePub
     author {
-      createdBy {
-        name
-        picture
-        updatedAt
-      }
-    }
-    coverImage {
       id
     }
-    content
-    id
-    slug
-    tags
-    title
+    content {
+      text
+    }
   }
 }`;
 
